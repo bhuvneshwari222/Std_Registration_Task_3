@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Std_Registration_Task_3';
+  @ViewChild('studentForm') studentForm !: NgForm;
+
+  onSubmit(){
+    if(this.studentForm.invalid){
+      return this.studentForm.control.markAllAsTouched()
+    }
+    this.studentForm.resetForm();
+  }
 }
